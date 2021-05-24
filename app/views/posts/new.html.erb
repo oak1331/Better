@@ -1,9 +1,11 @@
 <h1>投稿ページ</h1>
 <%= form_with model: @post, local: true do |form| %>
-  <h3>タイトル<span class = "must-container">必須</span></h3>
+  <h3>タイトル<span>必須</span></h3>
   <%= form.text_field :title, placeholder: "タイトル", size: "50" %>
-  <h3>コメントを入力してください</h3>
+  <h3>コメントを入力してください<span>必須</span></h3>
   <%= form.text_area :text, placeholder: "コメント", size: "50x10" %>
+  <h3>画像を選択してください<span>必須</span></h3>
+  <%= form.file_field :image %>
   <%= form.submit " 投稿 " %>
 <% end %>
 
