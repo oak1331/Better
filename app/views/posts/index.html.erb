@@ -8,6 +8,7 @@
 <%= link_to "投稿ページ", new_post_path %>
 
 <% @posts.each do |post| %>
+  <%= image_tag post.image.variant(resize: '500x500') %>
   <%= link_to post.title, post_parh((post.id)) %>
   <%= post.text %>
 <% end %>
