@@ -1,0 +1,11 @@
+<h1>投稿詳細ページ</h1>
+<%= @post.user.name %>
+<%= @post.title %>
+<%= @post.text %>
+
+<% if user_signed_in? && current_user.id == @post.user_id %>
+  <%= link_to "編集", edit_post_path(@post.id) %>
+  <%= link_to "削除", post_path(@post.id), method: :delete %>
+<% end %>
+
+<%= link_to "トップページへ戻る", root_path %>
