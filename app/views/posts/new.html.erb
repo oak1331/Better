@@ -1,0 +1,10 @@
+<h1>投稿ページ</h1>
+<%= form_with model: @post, local: true do |form| %>
+  <h3>タイトル<span class = "must-container">必須</span></h3>
+  <%= form.text_field :title, placeholder: "タイトル", size: "50" %>
+  <h3>コメントを入力してください</h3>
+  <%= form.text_area :text, placeholder: "コメント", size: "50x10" %>
+  <%= form.submit " 投稿 " %>
+<% end %>
+
+<%= link_to "トップページへ戻る", root_path %>
