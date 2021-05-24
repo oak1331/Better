@@ -13,4 +13,12 @@ class Post < ApplicationRecord
     validates :text
     validates :image
   end
+
+  with_options numericality: { other_than: 1 } do
+    validates :time_slot_id
+    validates :category_id
+    validates :situation_id
+    validates :prefecture_id
+    validates :weather_id
+  end
 end
