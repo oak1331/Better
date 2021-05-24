@@ -9,4 +9,6 @@ class Situation < ActiveHash::Base
     { id: 7, name: 'その他' }
   ]
 
+  include ActiveHash::Associations
+  has_many :posts
 end
