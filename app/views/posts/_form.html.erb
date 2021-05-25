@@ -1,0 +1,19 @@
+<%= form_with model: @post, local: true do |form| %>
+  <h3>タイトル<span>必須</span></h3>
+  <%= form.text_field :title, placeholder: "タイトル", size: "50" %>
+  <h3>コメントを入力してください<span>必須</span></h3>
+  <%= form.text_area :text, placeholder: "コメント", size: "50x10" %>
+  <h3>オススメの時間帯を教えてください<span>必須</span></h3>
+  <%= form.collection_select(:time_slot_id, TimeSlot.all, :id, :name, {}, {}) %>
+  <h3>カテゴリーを教えてください<span>必須</span></h3>
+  <%= form.collection_select(:category_id, Category.all, :id, :name, {}, {}) %>
+  <h3>オススメのシチュエーションを教えてください<span>必須</span></h3>
+  <%= form.collection_select(:situation_id, Situation.all, :id, :name, {}, {}) %>
+  <h3>場所を教えてください<span>必須</span></h3>
+  <%= form.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {}) %>
+  <h3>オススメの天気を教えてください<span>必須</span></h3>
+  <%= form.collection_select(:weather_id, Weather.all, :id, :name, {}, {}) %>
+  <h3>画像を選択してください<span>必須</span></h3>
+  <%= form.file_field :image %>
+  <%= form.submit " 投稿 " %>
+<% end %>
