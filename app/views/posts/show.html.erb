@@ -43,3 +43,23 @@
 <% end %>
 
 <%= link_to "トップページへ戻る", root_path %>
+
+<% if user_signed_in? %>
+  <%= form_with model: [@post, @comment], local: true do |form| %>
+    <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
+    <%= form.submit "送信" %>
+  <% end %>
+<% else %>
+  <strong><p>コメントの投稿には新規登録/ログインが必要です</p></strong>
+<% end %>
+
+<h4>＜コメント一覧＞</h4>
+<% @comments.each do |comment| %>
+  <p>
+    <strong><%= comment.user.nickname %>：</strong>
+    <%= comment.text %>
+    <% if user_signed_in? && current_user.id == comment.user_id %>
+      <%= link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete %>
+    <% end %>
+  </p>
+<% end %>
