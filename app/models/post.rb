@@ -22,4 +22,12 @@ class Post < ApplicationRecord
     validates :prefecture_id
     validates :weather_id
   end
+
+  def self.search(search)
+    if search != ""
+      Post.where('title LIKE(?)', "%#{search}%")
+    else
+      Post.includes(:user)
+    end
+  end
 end
