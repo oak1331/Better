@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:user).order('created_at DESC')
+    @posts = Post.limit(6).order('created_at DESC')
   end
 
   def new
