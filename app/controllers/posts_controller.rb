@@ -45,6 +45,10 @@ class PostsController < ApplicationController
     @posts = Post.search(params[:keyword])
   end
 
+  def latest
+    @posts = Post.includes(:user).order('created_at DESC')
+  end
+
   private
   def set_post
     @post = Post.find(params[:id])
