@@ -1,0 +1,10 @@
+<% if @user.id == current_user.id %>
+  <h1>マイページ</h1>
+  <%= link_to "アカウントを編集する", edit_user_path(@user.id) %>
+<% else %>
+  <h1><%= @user.nickname %>さんのページ</h1>
+<% end %>
+<%= link_to "トップページへ戻る", root_path %>
+
+<p><%= @user.nickname %>さんの投稿一覧</p><br/>
+<%= render partial: "posts/post", collection: @posts %>
