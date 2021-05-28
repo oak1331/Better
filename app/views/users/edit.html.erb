@@ -1,0 +1,19 @@
+<h2>アカウントの編集</h2>
+
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<%= link_to "マイページに戻る", :back %>
+
+<%= form_with model: @user, local: true do |f|%>
+
+  <div class="field">
+    <%= f.label :nickname %><br />
+    <%= f.text_field :nickname, autofocus: true, maxlength: "20" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <%= f.submit "更新" %>
+<% end %>
