@@ -11,4 +11,6 @@ Rails.application.routes.draw do
       get 'latest'
     end
   end
+
+  resources :users, only: [:edit, :update, :show]
 end
