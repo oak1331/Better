@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:nickname, :email)
+    params.require(:user).permit(:nickname, :email, :avatar)
   end
 
   def move_to_index

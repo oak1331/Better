@@ -6,5 +6,11 @@
 <% end %>
 <%= link_to "トップページへ戻る", root_path %>
 
+<% if @user.avatar? %>
+  <%= image_tag @user.avatar.url %>
+<% else %>
+  <i class="fas fa-user"></i>
+<% end %>
+
 <p><%= @user.nickname %>さんの投稿一覧</p><br/>
 <%= render partial: "posts/post", collection: @posts %>
