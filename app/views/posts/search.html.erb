@@ -1,3 +1,15 @@
-<%= link_to "トップページへ戻る", root_path %>
+<%= render partial: "search" %>
 
-<%= render partial: "post", collection: @posts %>
+<section class="latest-box">
+  <div class="container ">
+    <div class="row mb-5 align-items-center">
+      <div class="col">
+        <h4 class="mb-0">検索結果</h4>
+        <div>Have a better date for you</div>
+      </div>
+    </div>
+    <div class="row row-cols-3">
+      <%= render partial: "post", collection: @posts %>
+    </div>
+  </div>
+</section>

@@ -1,16 +1,125 @@
-<%= form_with url: search_posts_path, local: true, method: :get do |form| %>
-  <%= form.text_field :keyword, placeholder: "投稿を検索する" %>
-  <%= form.submit "検索" %>
-<% end %>
+<%= render partial: "search" %>
 
-<% if user_signed_in? %>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "新規登録", new_user_registration_path %>
-  <%= link_to "ログイン", new_user_session_path %>
-<% end %>
+<section class="latest-box">
+  <div class="container ">
+    <div class="row mb-5 align-items-center">
+        <div class="col">
+          <h4 class="mb-0">最新の投稿</h4>
+          <div>Have a better date for you</div>
+        </div>
+        <div class="col text-end">
+          <%= link_to "すべて見る", latest_posts_path, class: "link-btn" %>
+        </div>
+    </div>
+    <div class="row row-cols-3">
+      <%= render partial: "post", collection: @posts %>
+    </div>
+  </div>
+</section>
 
-<%= link_to "投稿ページ", new_post_path %>
+<section class="like-box">
+  <div class="container">
+    <div class="row mb-5 align-items-center">
+        <div class="col">
+          <h4 class="mb-0">人気の投稿</h4>
+          <div>Have a better date for you</div>
+        </div>
+        <div class="col text-end">
+          <%= link_to "すべて見る", latest_posts_path, class: "link-btn" %>
+        </div>
+    </div>
+    <div class="row row-cols-3">
+      <%= render partial: "post", collection: @posts %>
+    </div>
+  </div>
+</section>
 
-<%= link_to "新規投稿をすべて表示", latest_posts_path %>
-<%= render partial: "post", collection: @posts %>
+<section class="latest-box">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 p-2">
+        <div class="container">
+          <div class="info-box">
+            <div class="row justify-content-center">
+              <div class="col-11">
+                <h4 class="text-center mb-5">Betterでできること</h4>
+                <%= image_tag asset_path('image.jpeg'), class: "rounded-3" %>
+              </div>
+            </div>
+            <div class="row justify-content-center pt-5">
+              <div class="col-2 text-end">
+                <div class="info-check"><i class="fas fa-check-circle"></i></div>
+              </div>
+              <div class="col-10 col-lg-5">
+                ユーザー同士の共有で<br>
+                <h5>新しいデートスポットが見つかる。</h5>
+              </div>
+            </div>
+            <div class="row justify-content-center pt-3">
+              <div class="col-2 text-end">
+                <div class="info-check"><i class="fas fa-check-circle"></i></div>
+              </div>
+              <div class="col-10 col-lg-5">
+                カテゴリーやシチュエーションから<br>
+                <h5>2人にとって最適な場所が選べる。</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="like-box">
+  <div class="container">
+    <div class="info-box">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="text-center mb-5">Betterの使い方</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-4 p-2">
+          <div class="container">
+            <div class="info-box-show">
+              <div class="row justify-content-center">
+                <div class="col-12">
+                  <h5 class="text-center pt-3">探してみる</h5>
+                  <%= image_tag asset_path('search.png'), class: "info-image" %>
+                  <p class="p-3">毎日たくさんの投稿が共有されています。<br>様々な条件から2人にとって最適な場所を選べます。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 p-2">
+          <div class="container">
+            <div class="info-box-show">
+              <div class="row justify-content-center">
+                <div class="col-12">
+                  <h5 class="text-center pt-3">行ってみる</h5>
+                  <%= image_tag asset_path('date.png'), class: "info-image" %>
+                  <p class="p-3">行ってみたい場所を見つけたら、実際にデートを。<br>2人にとって、いつもより良いデートになるかも。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 p-2">
+          <div class="container">
+            <div class="info-box-show">
+              <div class="row justify-content-center">
+                <div class="col-12">
+                  <h5 class="text-center pt-3">共有する</h5>
+                  <%= image_tag asset_path('share.png'), class: "info-image" %>
+                  <p class="p-3">オススメの場所やお気に入りの場所などは、ぜひ共有してください。<br>投稿ボタンから、たった5分で簡単に投稿できます。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

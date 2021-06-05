@@ -1,3 +1,71 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.index-top {
+  padding: 7em 0;
+  background-color: #242424;
+}
+
+.latest-box {
+  padding: 5em 0;
+  background-color: #f7f6fb;
+}
+
+.like-box {
+  padding: 5em 0;
+  background-color: #fdfdfd;
+}
+
+.link-btn {
+  padding: 0.5em;
+  border-radius: 5px;
+  background-color: #e95464;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.post-box {
+  margin-bottom: 2em;
+  padding: 1em 0;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.post-image :hover {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.post-nickname {
+  color: #555;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.post-title {
+  color: #333;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.info-box {
+  margin: 3em 0;
+  padding: 4em 0;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.info-box-show {
+  margin: 1em 0;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.info-check {
+  color: #e95464;
+  font-size: 2rem;
+}
