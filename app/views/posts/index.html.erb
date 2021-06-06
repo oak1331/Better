@@ -25,11 +25,11 @@
           <div>Have a better date for you</div>
         </div>
         <div class="col text-end">
-          <%= link_to "すべて見る", latest_posts_path, class: "link-btn" %>
+          <%= link_to "すべて見る", popular_posts_path, class: "link-btn" %>
         </div>
     </div>
     <div class="row row-cols-3">
-      <%= render partial: "post", collection: @posts %>
+      <%= render partial: "post", collection: @like_posts %>
     </div>
   </div>
 </section>
