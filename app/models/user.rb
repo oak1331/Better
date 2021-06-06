@@ -20,4 +20,16 @@ class User < ApplicationRecord
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
   end
+
+  def following?(user)
+    followings.include?(user)
+  end
+
+  def follow(user_id)
+    relationships.create(follower: user_id)
+  end
+
+  def unfollow(relationship_id)
+    relationships.find(relationship_id).destroy!
+  end
 end
