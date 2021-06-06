@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     collection do
       get 'latest'
     end
+    collection do
+      get 'popular'
+    end
   end
 
   resources :users, only: [:edit, :update, :show]
