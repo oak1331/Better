@@ -63,3 +63,7 @@
     <% end %>
   </p>
 <% end %>
+
+<div id = "like_<%= @post.id %>">
+  <%= render partial: "likes/like", locals: { post: @post } %>
+</div>
