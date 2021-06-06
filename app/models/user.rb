@@ -10,10 +10,26 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
+  has_many :relationships, dependent: :destroy
+  has_many :followings, through: :relationships, source: :follower
+  has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
+  has_many :followers, through: :passive_relationships, source: :user
 
   validates :nickname, presence: true
 
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
+  end
+
+  def following?(user)
+    followings.include?(user)
+  end
+
+  def follow(user_id)
+    relationships.create(follower: user_id)
+  end
+
+  def unfollow(relationship_id)
+    relationships.find(relationship_id).destroy!
   end
 end

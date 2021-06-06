@@ -12,5 +12,9 @@
   <i class="fas fa-user"></i>
 <% end %>
 
+<div id = "relationship_<%= @user.id %>">
+  <%= render partial: "relationships/relationship", locals: { user: @user } %>
+</div>
+
 <p><%= @user.nickname %>さんの投稿一覧</p><br/>
 <%= render partial: "posts/post", collection: @posts %>
