@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :search, :latest]
+  before_action :authenticate_user!, except: [:index, :show, :search, :latest, :popular]
   before_action :set_post, only: [:edit, :update, :show, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.limit(6).order('created_at DESC')
+    like_posts = Post.includes(:liked_users).sort {|a,b| b.liked_users.length <=> a.liked_users.length}
+    @like_posts = like_posts.first(6)
   end
 
   def new
@@ -47,6 +49,10 @@ class PostsController < ApplicationController
 
   def latest
     @posts = Post.includes(:user).order('created_at DESC')
+  end
+
+  def popular
+    @posts = Post.includes(:liked_users).sort {|a,b| b.liked_users.length <=> a.liked_users.length}
   end
 
   private
