@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :show]
-  before_action :set_user, only: [:edit, :update, :show, :followings, :followers]
+  before_action :authenticate_user!, only: [:edit, :update, :show, :likes, :followings, :followers]
+  before_action :set_user, only: [:edit, :update, :show, :likes, :followings, :followers]
   before_action :move_to_index, only: [:edit, :update]
 
   def edit
@@ -16,6 +16,11 @@ class UsersController < ApplicationController
 
   def show
     @posts = @user.posts.order('created_at DESC')
+  end
+
+  def likes
+    likes = Like.where(user_id: @user).pluck(:post_id)
+    @like_posts = Post.find(likes)
   end
 
   def followings
