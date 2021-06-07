@@ -16,5 +16,8 @@
   <%= render partial: "relationships/relationship", locals: { user: @user } %>
 </div>
 
+<%= link_to "フォロー", followings_user_path(@user) %>
+<%= link_to "フォロワー", followers_user_path(@user) %>
+
 <p><%= @user.nickname %>さんの投稿一覧</p><br/>
 <%= render partial: "posts/post", collection: @posts %>
