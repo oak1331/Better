@@ -22,7 +22,8 @@ ja:
     attributes:
       user:
         current_password: "現在のパスワード"
-        name: 名前
+        name: "名前"
+        nickname: "ニックネーム"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "もう一度パスワードを入力してください"

@@ -1,24 +1,34 @@
-<h2>アカウントの編集</h2>
-
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<%= link_to "マイページに戻る", :back %>
-
-<%= form_with model: @user, local: true do |f|%>
-
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true, maxlength: "20" %>
+<div class="container">
+  <div class="row my-5 justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4 p-2">
+      <div class="devise-box">
+        <div class="container">
+          <div class="row justify-content-center">
+            <%= form_with model: @user, local: true do |f|%>
+              <h2>アカウントの編集</h2>
+              <div class="nickname-box col-12 mb-3">
+                <%= f.label :nickname %><br />
+                <%= f.text_field :nickname, autofocus: true, maxlength: "20" %>
+              </div>
+              <div class="email-box col-12 mb-3">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              </div>
+              <div class="field col-12 mb-4">
+                <%= f.label :avatar %>
+                <%= f.file_field :avatar %>
+              </div>
+              <div class="login-box col-12 pt-4 mb-5">
+                <%= f.submit "更新" %>
+              </div>
+              <div class="col-12 pt-4 mb-2 text-end">
+                <%= link_to "マイページに戻る", user_path(@user), class: "text-decoration-none" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
-  </div>
-
-  <%= f.submit "更新" %>
-<% end %>
