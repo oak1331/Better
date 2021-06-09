@@ -15,13 +15,24 @@
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <h1><%= link_to "Better", root_path, class:"header-logo" %></h1>
-          <% if user_signed_in? %>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-          <% else %>
-            <%= link_to "新規登録", new_user_registration_path %>
-            <%= link_to "ログイン", new_user_session_path %>
-          <% end %>
-          <%= link_to "投稿ページ", new_post_path %>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user text-white"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <% if user_signed_in? %>
+                <%= link_to "マイページ", user_path(current_user.id), class: "dropdown-item text-decoration-none" %>
+                <li><hr class="dropdown-divider"></li>
+                <%= link_to "新規投稿", new_post_path, class: "dropdown-item text-decoration-none" %>
+                <li><hr class="dropdown-divider"></li>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item text-decoration-none" %>
+              <% else %>
+                <%= link_to "新規登録", new_user_registration_path, class: "dropdown-item text-decoration-none" %>
+                <li><hr class="dropdown-divider"></li>
+                <%= link_to "ログイン", new_user_session_path, class: "dropdown-item text-decoration-none" %>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </nav>
     </div>

@@ -1,25 +1,72 @@
-<% if @user.id == current_user.id %>
-  <h1>マイページ</h1>
-  <%= link_to "アカウントを編集する", edit_user_path(@user.id) %>
-<% else %>
-  <h1><%= @user.nickname %>さんのページ</h1>
-<% end %>
-<%= link_to "トップページへ戻る", root_path %>
+<section class="latest-box">
+  <div class="container">
+    <div class="row mb-5 align-items-center">
+      <div class="col">
+        <h4 class="mb-0"><%= @user.nickname %>さんのマイページ</h4>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-6 col-lg-4 p-2">
+        <div class="container">
+            <ul class="list-group text-center">
+              <li class="list-group-item"><%= link_to "マイページ", user_path(@user), class: "text-dark text-decoration-none" %></li>
+              <li class="list-group-item"><%= link_to "お気に入り", likes_user_path(@user), class: "text-dark text-decoration-none" %></li>
+              <li class="list-group-item"><%= link_to "フォロー", followings_user_path(@user), class: "text-dark text-decoration-none" %></li>
+              <li class="list-group-item"><%= link_to "フォロワー", followers_user_path(@user), class: "text-dark text-decoration-none" %></li>
+              <% if @user.id == current_user.id %>
+                <li class="list-group-item"><%= link_to "アカウント編集", edit_user_path(@user.id), class: "text-dark text-decoration-none" %></li>
+              <% end %>
+            </ul>
+        </div>
+      </div>
+      <div class="col-6 col-lg-5 p-2">
+        <div class="container">
+          <div class="profile-box">
+            <div class="row justify-content-center text-center">
+              <div class="col-4 col-lg-3">
+                <% if @user.avatar? %>
+                  <%= image_tag @user.avatar.url %>
+                <% else %>
+                  <i class="fas fa-user"></i>
+                <% end %>
+              </div>
+            </div>
+            <div class="row justify-content-center pt-3">
+              <div class="col-12 text-center">
+                <%= @user.nickname %>
+                <div id = "relationship_<%= @user.id %>">
+                  <%= render partial: "relationships/relationship", locals: { user: @user } %>
+                </div>
+              </div>
+            </div>
+            <div class="row text-center text-secondary pt-3">
+              <div class="col-4">
+                <%= @user.posts.length %><br>投稿
+              </div>
+              <div class="col-4">
+                <%= @user.followings.length %><br>フォロー
+              </div>
+              <div class="col-4">
+                <%= @user.followers.length %><br>フォロワー
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<% if @user.avatar? %>
-  <%= image_tag @user.avatar.url %>
-<% else %>
-  <i class="fas fa-user"></i>
-<% end %>
-
-<div id = "relationship_<%= @user.id %>">
-  <%= render partial: "relationships/relationship", locals: { user: @user } %>
-</div>
-
-<%= link_to "お気に入り", likes_user_path(@user) %>
-
-<%= link_to "フォロー", followings_user_path(@user) %>
-<%= link_to "フォロワー", followers_user_path(@user) %>
-
-<p><%= @user.nickname %>さんの投稿一覧</p><br/>
-<%= render partial: "posts/post", collection: @posts %>
+<section class="latest-box">
+  <div class="container ">
+    <div class="row mb-5 align-items-center">
+      <div class="col">
+        <h4 class="mb-0"><%= @user.nickname %>さんの投稿一覧</h4>
+        <div>Have a better date for you</div>
+      </div>
+    </div>
+    <div class="row row-cols-3">
+      <%= render partial: "posts/post", collection: @posts %>
+    </div>
+  </div>
+</section>

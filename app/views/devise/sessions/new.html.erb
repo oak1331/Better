@@ -1,26 +1,37 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container">
+  <div class="row my-5 justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4 p-2">
+      <div class="devise-box">
+        <div class="container">
+          <div class="row justify-content-center">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <h2>ログイン</h2>
+              <div class="email-box col-12 mb-3">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              </div>
+              <div class="password-box col-12 mb-4">
+                <%= f.label :password %>
+                <%= link_to "パスワードを忘れた場合", new_user_password_path, class: "text-decoration-none column-right" %>
+                <%= f.password_field :password, autocomplete: "current-password" %>
+              </div>
+              <div class="login-box col-12 pt-4 mb-4">
+                <%= f.submit "ログイン" %>
+                <% if devise_mapping.rememberable? %>
+                  <div class="remember mt-3">
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+            <div class="newuser-box col-12">
+              <p><span>----------</span> Betterは初めてご利用ですか？ <span>----------</span></p>
+              <%= link_to "Betterアカウントを作成", new_user_registration_path, class: "text-decoration-none" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
