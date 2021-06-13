@@ -6,13 +6,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     collection do
-      get 'search'
-    end
-    collection do
-      get 'latest'
-    end
-    collection do
-      get 'popular'
+      get :search, :latest, :popular
     end
   end
 
