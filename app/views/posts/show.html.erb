@@ -1,69 +1,125 @@
-<h1>投稿詳細ページ</h1>
+<section class="latest-box">
+  <div class="container">
+    <div class="row my-0 text-center">
+      <div class="col">
+        <h2 class="mb-5">投稿詳細</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mb-5 justify-content-center">
+      <div class="col-12 col-lg-6 col-xl-6 p-2">
+        <div class="post-box">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-12 justify-content-center px-0">
+                <%= image_tag( @post.image.variant(resize: '320x180') ) %>
+              </div>
+              <div class="col text-truncate d-block w-100">
+                <%= link_to @post.user.nickname, user_path(@post.user.id), class: "post-nickname text-start" %>
+              </div>
+              <div class="col text-end">
+                <div id = "like_<%= @post.id %>">
+                  <%= render partial: "likes/like", locals: { post: @post } %>
+                </div>
+              </div>
+              <% if user_signed_in? && current_user.id == @post.user_id %>
+                <div class="col-12 text-end">
+                  <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-sm btn-outline-secondary text-decoration-none m-2" %>
+                  <%= link_to "削除", post_path(@post.id), method: :delete, class: "btn btn-sm btn-outline-secondary text-decoration-none m-2" %>
+                  </div>
+                </div>
+              <% end %>
+              <div class="col-12 my-2 p-2 text-center text-reset text-truncate d-block w-100 post-title">
+                <%= @post.title %>
+              </div>
+              <div class="col-12 my-2">
+                <div class="post-nickname">コメント</div>
+                <div class="col border rounded p-2 text-reset text-truncate d-block w-100">
+                  <%= @post.text %>
+                </div>
+              </div>
+              <div class="col-12 my-2">
+                <div class="post-nickname">オススメの時間</div>
+                <div class="col border rounded p-2">
+                  <%= @post.time_slot.name %>
+                </div>
+              </div>
+              <div class="col-12 my-2">
+                <div class="post-nickname">カテゴリー</div>
+                <div class="col border rounded p-2">
+                  <%= @post.category.name %>
+                </div>
+              </div>
+              <div class="col-12 my-2">
+                <div class="post-nickname">オススメのシチュエーション</div>
+                <div class="col border rounded p-2">
+                  <%= @post.situation.name %>
+                </div>
+              </div>
+              <div class="col-12 my-2">
+                <div class="post-nickname">場所</div>
+                <div class="col border rounded p-2">
+                  <%= @post.prefecture.name %>
+                </div>
+              </div>
+              <div class="col-12 my-2">
+                <div class="post-nickname">オススメの天気</div>
+                <div class="col border rounded p-2">
+                  <%= @post.weather.name %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<table>
-  <tbody>
-    <tr>
-      <th>ユーザーネーム</th>
-      <td><%= @post.user.nickname %></td>
-    </tr>
-    <tr>
-      <th>タイトル</th>
-      <td><%= @post.title %></td>
-    </tr>
-    <tr>
-      <th>コメント</th>
-      <td><%= @post.text %></td>
-    </tr>
-    <tr>
-      <th>オススメの時間</th>
-      <td><%= @post.time_slot.name %></td>
-    </tr>
-    <tr>
-      <th>カテゴリー</th>
-      <td><%= @post.category.name %></td>
-    </tr>
-    <tr>
-      <th>オススメのシチュエーション</th>
-      <td><%= @post.situation.name %></td>
-    </tr>
-    <tr>
-      <th>場所</th>
-      <td><%= @post.prefecture.name %></td>
-    </tr>
-    <tr>
-      <th>オススメの天気</th>
-      <td><%= @post.weather.name %></td>
-    </tr>
-  </tbody>
-</table>
-
-<% if user_signed_in? && current_user.id == @post.user_id %>
-  <%= link_to "編集", edit_post_path(@post.id) %>
-  <%= link_to "削除", post_path(@post.id), method: :delete %>
-<% end %>
-
-<%= link_to "トップページへ戻る", root_path %>
-
-<% if user_signed_in? %>
-  <%= form_with model: [@post, @comment], local: true do |form| %>
-    <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
-    <%= form.submit "送信" %>
-  <% end %>
-<% else %>
-  <strong><p>コメントの投稿には新規登録/ログインが必要です</p></strong>
-<% end %>
-
-<h4>＜コメント一覧＞</h4>
-<% @comments.each do |comment| %>
-  <p>
-    <strong><%= comment.user.nickname %>：</strong>
-    <%= comment.text %>
-    <% if user_signed_in? && current_user.id == comment.user_id %>
-      <%= link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete %>
-    <% end %>
-  </p>
-<% end %>
-
-<div id = "like_<%= @post.id %>">
-  <%= render partial: "likes/like", locals: { post: @post } %>
-</div>
+<section class="latest-box">
+  <div class="container">
+    <div class="row my-0 text-center">
+      <div class="col">
+        <h2 class="mb-5">コメント一覧</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mb-5 justify-content-center">
+      <div class="col-12 col-lg-6 col-xl-6 p-2">
+        <div class="post-box">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-12 my-3 p-2 text-reset text-truncate d-block w-100 post-title border-bottom">
+                  <% if user_signed_in? %>
+                  <%= form_with model: [@post, @comment], local: true do |form| %>
+                    <%= form.text_area :text, placeholder: "コメントする", class: "form-control" %>
+                    <div class="text-end my-2 comment-box">
+                      <%= form.submit "送信" %>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <div class="text-center text-dark"><p>コメントの投稿には新規登録/ログインが必要です</p></div>
+                <% end %>
+              </div>
+              <% @comments.each do |comment| %>
+                <div class="col text-truncate d-block w-100 d-flex align-items-center">
+                  <%= link_to @post.user.nickname, user_path(@post.user.id), class: "post-nickname text-start" %>
+                </div>
+                <% if user_signed_in? && current_user.id == comment.user_id %>
+                  <div class="col text-end">
+                    <%= link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete, class: "btn btn-sm btn-outline-secondary text-decoration-none m-1" %>
+                  </div>
+                <% end %>
+                <div class="col-12 border-bottom mb-3 text-break">
+                  <%= comment.text %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
