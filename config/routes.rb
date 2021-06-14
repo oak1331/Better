@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     member do
       get :followings, :followers, :likes
     end
+    collection do
+      get :search
+    end
   end
   
   resources :relationships, only: [:create, :destroy]
