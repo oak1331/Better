@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <%= form_with model: @post, local: true do |f| %>
-              <%= render 'layouts/error_messages', model: f.object %>
+              <%= render 'layouts/post_error_messages', model: f.object %>
               <div class="col-12 mb-3">
                 <%= f.label :"タイトルを入力してください" %><br />
                 <%= f.text_field :title, placeholder: "タイトル", size: "50", class: "form-control" %>
