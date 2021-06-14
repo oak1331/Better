@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    attributes:
+      post:
+        title: "タイトル"
+        text: "テキスト"
+        image: "画像"
+        time_slot_id: "時間帯"
+        category_id: "カテゴリー"
+        situation_id: "シチュエーション"
+        prefecture_id: "場所"
+        weather_id: "天気"
+        user: "ユーザー"
