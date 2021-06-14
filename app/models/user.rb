@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
 
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i, message: 'Include both letters and numbers' }
+
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
   end
