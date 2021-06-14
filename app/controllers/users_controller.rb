@@ -31,6 +31,10 @@ class UsersController < ApplicationController
     @users = @user.followers
   end
 
+  def search
+    @users = User.search(params[:keyword])
+  end
+
   private
   def set_user
     @user = User.find(params[:id])
