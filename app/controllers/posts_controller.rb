@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.limit(6).order('created_at DESC')
-    like_posts = Post.includes(:liked_users).sort {|a,b| b.liked_users.length <=> a.liked_users.length}
+    like_posts = Post.includes(:liked_users).sort { |a, b| b.liked_users.length <=> a.liked_users.length }
     @like_posts = like_posts.first(6)
   end
 
@@ -52,21 +52,21 @@ class PostsController < ApplicationController
   end
 
   def popular
-    @posts = Post.includes(:liked_users).sort {|a,b| b.liked_users.length <=> a.liked_users.length}
+    @posts = Post.includes(:liked_users).sort { |a, b| b.liked_users.length <=> a.liked_users.length }
   end
 
   private
+
   def set_post
     @post = Post.find(params[:id])
   end
 
   def post_params
-    params.require(:post).permit(:title, :text, :image, :time_slot_id, :category_id, :situation_id, :prefecture_id, :weather_id).merge(user_id: current_user.id)
+    params.require(:post).permit(:title, :text, :image, :time_slot_id, :category_id, :situation_id, :prefecture_id,
+                                 :weather_id).merge(user_id: current_user.id)
   end
 
   def move_to_index
-    unless @post.user.id == current_user.id
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless @post.user.id == current_user.id
   end
 end
