@@ -27,7 +27,7 @@ class Post < ApplicationRecord
   end
 
   def self.search(search)
-    if search != ""
+    if search != ''
       Post.where('title LIKE(?)', "%#{search}%")
     else
       Post.includes(:user)
